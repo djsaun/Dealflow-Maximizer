@@ -1,0 +1,25 @@
+{
+  "name": "saunders-blog",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:djsaun/robsaundersblog.git"
+  },
+  "author": "David Saunders",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.3.4",
+    "csswring": "^4.2.2",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^6.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-watch": "^4.3.5",
+    "postcss": "^5.0.19",
+    "postcss-color-function": "^2.0.1",
+    "postcss-custom-media": "^5.0.1",
+    "postcss-custom-properties": "^5.0.0",
+    "postcss-import": "^8.0.2",
+    "postcss-mixins": "^4.0.1",
+    "postcss-nested": "^1.0.0"
+  }
+}
