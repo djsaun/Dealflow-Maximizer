@@ -1,3 +1,7 @@
-a {
-  color: red;
+header {
+  #intro {
+    #intro-core {
+      margin-left: 0;
+    }
+  }
 }
