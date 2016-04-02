@@ -1,6 +1,3 @@
-<!-- TODO: Create event custom post type with date and text input fields  -->
-<!-- TODO: Add conditional event section to homepage banner -->
-
 <?php
 
 // Create event alert custom post type
