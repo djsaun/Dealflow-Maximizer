@@ -1,4 +1,16 @@
 header {
+
+  #header {
+    background: var(--white);
+
+    .header-links {
+
+      a {
+        color: var(--gray);
+      }
+    }
+  }
+
   #intro {
     #intro-core {
       margin-left: 0;

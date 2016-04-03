@@ -1,6 +1,10 @@
-#sub-footer-core {
-  #footer-menu {
-    display: block !important;
-    text-align: left;
+#sub-footer {
+  background: var(--white);
+  
+  #sub-footer-core {
+    #footer-menu {
+      display: block !important;
+      text-align: left;
+    }
   }
 }
