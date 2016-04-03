@@ -23,33 +23,33 @@ add_action( 'add_meta_boxes', 'add_dealflow_testimonial_box' );
 
 function add_dealflow_testimonial_box() {
     add_meta_box(
-        'dealflow_testimonial', // ID, should be a string.
+        'testimonial_attribution', // ID, should be a string.
         'Attribution', // Meta Box Title.
-        'dealflow_testimonial_meta_box', // Your call back function, this is where your form field will go.
+        'testimonial_attribution_meta_box', // Your call back function, this is where your form field will go.
         'testimonial', // The post type you want this to show up on, can be post, page, or custom post type.
         'normal', // The placement of your meta box, can be normal or side.
         'low' // The priority in which this will be displayed.
     );
 }
 
-function dealflow_testimonial_meta_box( $post ) {
+function testimonial_attribution_meta_box( $post ) {
 
 	// Add a nonce field so we can check for it later.
-	wp_nonce_field( 'dealflow_testimonial_save_meta_box_data', 'dealflow_testimonial_meta_box_nonce' );
-	$locationValue = get_post_meta( $post->ID, 'dealflow_testimonial', true );
+	wp_nonce_field( 'testimonial_attribution_save_meta_box_data', 'testimonial_attribution_meta_box_nonce' );
+	$locationValue = get_post_meta( $post->ID, 'testimonial_attribution', true );
 
-	echo '<input type="text" id="dealflow_testimonial" name="dealflow_testimonial" style="width:100%;" value="' . esc_attr( $locationValue ) . '" />';
+	echo '<input type="text" id="testimonial_attribution" name="testimonial_attribution" style="width:100%;" value="' . esc_attr( $locationValue ) . '" />';
 }
 
-function dealflow_testimonial_save_meta_box_data( $post_id ) {
+function testimonial_attribution_save_meta_box_data( $post_id ) {
 
 	// Check if our nonce is set.
-	if ( ! isset( $_POST['dealflow_testimonial_meta_box_nonce'] ) ) {
+	if ( ! isset( $_POST['testimonial_attribution_meta_box_nonce'] ) ) {
 		return;
 	}
 
 	// Verify that the nonce is valid.
-	if ( ! wp_verify_nonce( $_POST['dealflow_testimonial_meta_box_nonce'], 'dealflow_testimonial_save_meta_box_data' ) ) {
+	if ( ! wp_verify_nonce( $_POST['testimonial_attribution_meta_box_nonce'], 'testimonial_attribution_save_meta_box_data' ) ) {
 		return;
 	}
 
@@ -75,17 +75,17 @@ function dealflow_testimonial_save_meta_box_data( $post_id ) {
 	/* OK, it's safe for us to save the data now. */
 
 	// Make sure that it is set.
-	if ( ! isset( $_POST['dealflow_testimonial'] ) ) {
+	if ( ! isset( $_POST['testimonial_attribution'] ) ) {
 		return;
 	}
 
 	// Sanitize user input.
-	$my_data = sanitize_text_field( $_POST['dealflow_testimonial'] );
+	$my_data = sanitize_text_field( $_POST['testimonial_attribution'] );
 
 	// Update the meta field in the database.
-	update_post_meta( $post_id, 'dealflow_testimonial', $my_data );
+	update_post_meta( $post_id, 'testimonial_attribution', $my_data );
 }
-add_action( 'save_post', 'dealflow_testimonial_save_meta_box_data' );
+add_action( 'save_post', 'testimonial_attribution_save_meta_box_data' );
 
 // Featured meta box
 

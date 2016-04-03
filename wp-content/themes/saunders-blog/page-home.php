@@ -8,7 +8,7 @@
  */
 
 get_header(); ?>
-<?php $args = array(
+<?php $eventArgs = array(
           "post_type" => 'event_alert',
           "posts_per_page" => -1,
           "orderby" => "menu_order",
@@ -21,8 +21,8 @@ get_header(); ?>
            )
          )
       );
-      $loop = new WP_Query( $args );
-      while ( $loop->have_posts() ) : $loop->the_post(); ?>
+      $eventLoop = new WP_Query( $eventArgs );
+      while ( $eventLoop->have_posts() ) : $eventLoop->the_post(); ?>
 
       <div class="active_event">
         <p>I will be at <?php echo the_title(); ?> in <?php echo get_post_meta($post->ID, $key="event_location", true);
@@ -45,5 +45,29 @@ get_header(); ?>
 				<?php /* Add comments */  thinkup_input_allowcomments(); ?>
 
 			<?php endwhile; wp_reset_query(); ?>
+
+      <div class="testimonial">
+        <?php
+        $testimonialArgs = array(
+                  "post_type" => 'testimonial',
+                  "posts_per_page" => 1,
+                  "orderby" => "rand",
+                  'meta_query' => array(
+                   array(
+                     'key' => 'featured',
+                     'value' => 'true',
+                     'compare' => '='
+                   )
+                 )
+              );
+
+        $testimonialLoop = new WP_Query( $testimonialArgs );
+        while ( $testimonialLoop->have_posts() ) : $testimonialLoop->the_post(); ?>
+
+          <p><?php echo the_content(); ?></p>
+          <p> - <?php echo get_post_meta($post->ID, $key="testimonial_attribution", true); ?></p>
+
+          <?php endwhile; ?>
+      </div>
 
 <?php get_footer(); ?>
