@@ -28,3 +28,8 @@ function theme_enqueue_styles() {
 
 include 'inc/rss_feeds.php';
 include 'inc/events.php';
+
+function add_menu_order_support_for_portfolios() {
+	add_post_type_support( 'x-portfolio', 'page-attributes' );
+}
+add_action( 'init', 'add_menu_order_support_for_portfolios' );

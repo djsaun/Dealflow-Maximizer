@@ -17,7 +17,9 @@ require_once('php/autoloader.php');
           <?php
           $query = new WP_Query(
              array(
-               'post_type' => 'x-portfolio'
+               'post_type' => 'x-portfolio',
+               'order_by' => 'menu-order',
+               'order' => 'ASC'
              )
            );
 
