@@ -15,7 +15,7 @@ require_once('php/autoloader.php');
     <div class="x-container max width">
         <section class="category-list">
           <?php
-          $query = new WP_Query(
+          $categoriesQuery = new WP_Query(
              array(
                'post_type' => 'x-portfolio',
                'order_by' => 'menu-order',
@@ -23,12 +23,12 @@ require_once('php/autoloader.php');
              )
            );
 
-           if ( $query->have_posts() ) {
+           if ( $categoriesQuery->have_posts() ) {
 
     // Start looping over the query results.
-    while ( $query->have_posts() ) {
+    while ( $categoriesQuery->have_posts() ) {
 
-        $query->the_post(); ?>
+        $categoriesQuery->the_post(); ?>
 
         <div class="x-column x-sm x-1-3 categories">
           <div class="x-promo man">
@@ -42,6 +42,19 @@ require_once('php/autoloader.php');
   <?php  }
 
 } ?>
+      </section>
+
+      <section class="featured-category">
+        <?php $featuredCategoryQuery = new WP_Query(
+           array(
+             'post_type' => 'x-portfolio',
+             'order_by' => 'menu-order',
+             'order' => 'ASC',
+             'posts_per_page' => 1
+           )
+         );
+
+         echo jddayofweek ( cal_to_jd(CAL_GREGORIAN, date("m"),date("d"), date("Y")));?>
       </section>
     </div>
 
