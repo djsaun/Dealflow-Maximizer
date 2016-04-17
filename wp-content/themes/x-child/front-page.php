@@ -25,36 +25,71 @@ require_once('php/autoloader.php');
 
            if ( $categoriesQuery->have_posts() ) {
 
-    // Start looping over the query results.
-    while ( $categoriesQuery->have_posts() ) {
+            // Start looping over the query results.
+            while ( $categoriesQuery->have_posts() ) {
 
-        $categoriesQuery->the_post(); ?>
+                $categoriesQuery->the_post(); ?>
 
-        <div class="x-column x-sm x-1-3 categories">
-          <div class="x-promo man">
-            <div class="x-promo-content">
-              <h3><?php echo the_title(); ?></h3>
-              <a href="<?php echo the_permalink(); ?>">Read More</a>
-            </div>
-          </div>
-        </div>
+                <div class="x-column x-sm x-1-3 categories">
+                  <div class="x-promo man">
+                    <div class="x-promo-content">
+                      <h3><?php echo the_title(); ?></h3>
+                      <a href="<?php echo the_permalink(); ?>">Read More</a>
+                    </div>
+                  </div>
+                </div>
 
-  <?php  }
+          <?php  }
 
-} ?>
+          } ?>
       </section>
 
       <section class="featured-category">
-        <?php $featuredCategoryQuery = new WP_Query(
+        <?php
+        $dayOfWeek = jddayofweek ( cal_to_jd(CAL_GREGORIAN, date("m"),date("d"), date("Y")) , 1 );
+        $dayOfWeek = strtolower($dayOfWeek);
+        echo get_post_meta( $post->ID, 'rss_feed_input', true );
+        $featuredCategoryQuery = new WP_Query(
            array(
              'post_type' => 'x-portfolio',
              'order_by' => 'menu-order',
              'order' => 'ASC',
-             'posts_per_page' => 1
+             'posts_per_page' => 1,
+             'meta_query' => array(
+                array(
+                   'key' => $dayOfWeek,
+                   'value' => 'checked',
+                   'compare' => '='
+                )
+             )
            )
          );
 
-         echo jddayofweek ( cal_to_jd(CAL_GREGORIAN, date("m"),date("d"), date("Y")));?>
+         if ( $featuredCategoryQuery->have_posts() ) {
+
+          // Start looping over the query results.
+          while ( $featuredCategoryQuery->have_posts() ) {
+
+          $featuredCategoryQuery->the_post(); ?>
+
+            <h3 class="featured-category-title"><?php echo the_title(); ?> News</h3>
+
+              <div class="x-column x-sm x-1-3 categories">
+                <!-- <iframe style=”border: 1px solid #333333; overflow: hidden; width: 190px; height: 490px;” src=”https://research.stlouisfed.org/fred-glance-widget.php” height=”240″ width=”320″ frameborder”0″ scrolling=”no”></iframe> -->
+                <iframe src="<?php echo get_post_meta( $post->ID, 'portfolio_widget', true ); ?>"></iframe>
+              </div>
+
+              <div class="x-column x-sm x-1-3 categories">
+                  test
+              </div>
+
+              <div class="x-column x-sm x-1-3 categories">
+                  test
+              </div>
+
+        <?php  }
+
+        } ?>
       </section>
     </div>
 
