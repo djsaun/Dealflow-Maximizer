@@ -8,3 +8,4 @@ node_modules/
 fonts/icomoon/
 *.psd
 wp-config.php
+cache/*.spc

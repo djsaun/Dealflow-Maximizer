@@ -6,6 +6,7 @@
 // A blank page for creating unique layouts.
 // =============================================================================
 
+require_once('php/autoloader.php');
 ?>
 
 <?php get_header(); ?>
@@ -25,26 +26,22 @@
     // Start looping over the query results.
     while ( $query->have_posts() ) {
 
-        $query->the_post();
+        $query->the_post(); ?>
 
-        // Contents of the queried post results go here.
+        <div class="x-column x-sm x-1-3 categories">
+          <div class="x-promo man">
+            <div class="x-promo-content">
+              <h3><?php echo the_title(); ?></h3>
+              <a href="<?php echo the_permalink(); ?>">Read More</a>
+            </div>
+          </div>
+        </div>
 
-    }
+  <?php  }
 
 } ?>
-
-          <article class="x-column x-sm x-1-3 category-1">
-            <div class="x-promo man"><?php echo the_title(); ?></div>
-            <a href="<?php echo the_permalink(); ?>">Read More</a>
-          </article>
-
-
-        </section>
+      </section>
     </div>
-
-
-
-
 
     <?php while ( have_posts() ) : the_post(); ?>
 
