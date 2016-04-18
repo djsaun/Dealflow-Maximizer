@@ -34,7 +34,7 @@ require_once('php/autoloader.php');
                 <div class="x-column x-sm x-1-3 categories">
                   <div class="x-promo man">
                     <div class="x-promo-content">
-                      <h3><?php echo the_title(); ?></h3>
+                      <h4><?php echo the_title(); ?></h4>
                       <a href="<?php echo the_permalink(); ?>">Read More</a>
                     </div>
                   </div>
@@ -54,14 +54,6 @@ require_once('php/autoloader.php');
         $dayOfWeek = strtolower($dayOfWeek);
         $currentDate = date("Y-m-d");
 
-
-        // var_dump($date);
-        //
-        // if (get_post_meta( $post->ID, 'priority_date', true ) == $currentDate) {
-        //   echo 'current date';
-        // } else {
-        //   echo 'not current date';
-        // }
         $featuredCategoryQuery = new WP_Query(
            array(
              'post_type' => 'x-portfolio',
@@ -70,22 +62,6 @@ require_once('php/autoloader.php');
              'posts_per_page' => 1
            )
          );
-
-        // $featuredCategoryQuery = new WP_Query(
-        //    array(
-        //      'post_type' => 'x-portfolio',
-        //      'order_by' => 'menu-order',
-        //      'order' => 'ASC',
-        //      'posts_per_page' => 1,
-        //      'meta_query' => array(
-        //         array(
-        //            'key' => $dayOfWeek,
-        //            'value' => 'checked',
-        //            'compare' => '='
-        //         )
-        //      )
-        //    )
-        //  );
 
          if ( $featuredCategoryQuery->have_posts() ) {
 
