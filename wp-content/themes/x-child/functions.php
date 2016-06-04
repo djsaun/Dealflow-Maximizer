@@ -25,10 +25,10 @@ add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
     wp_enqueue_style('styles', get_stylesheet_directory_uri().'/css/app.min.css');
 }
-
-include 'inc/rss_feeds.php';
+include 'inc/categories.php';
 include 'inc/events.php';
-include 'inc/portfolio.php';
+// include 'inc/portfolio.php';
+include 'inc/rss_feeds.php';
 
 function add_menu_order_support_for_portfolios() {
 	add_post_type_support( 'x-portfolio', 'page-attributes' );

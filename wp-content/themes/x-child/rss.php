@@ -1,16 +1,23 @@
 <?php
-$args = array( 'post_type' => 'rss_feed' );
+$args = array( 'p' => get_post_meta( $post->ID, 'category_rss', true ), 'post_type' => 'rss_feed' );
 
 $loop = new WP_Query( $args );
 while ( $loop->have_posts() ) : $loop->the_post();
   $rss = get_post_meta( get_the_ID(), 'rss_feed_input', true );
-  $feed = new SimplePie();
 
-  // Set which feed to process.
-  $feed->set_feed_url(explode(',',$rss));
-  $feed->enable_cache(true);
-  $feed->set_stupidly_fast(true);
-  $feed->enable_order_by_date(true);
+  $max_items_per_feed = 5;  // this pulls the top 5 articles from each feed
+$max_items_total = 15;  // this caps the total articles
+$feed = new SimplePie();
+$feed->set_feed_url(explode(',',$rss));
+
+// limit the number of items
+$feed->set_item_limit($max_items_per_feed);
+$feed->enable_cache(true);
+$feed->set_cache_duration(86400);  // refresh cache once a day - 24 hrs
+
+// Run SimplePie.
+$success = $feed->init();
+
   // Run SimplePie.
   $feed->init();
 
@@ -39,7 +46,7 @@ foreach ($feed->get_items() as $item):
 ?>
 
   <div class="item">
-    <h2><a href="<?php echo $item->get_permalink(); ?>"><?php echo $item->get_title(); ?></a></h2>
+    <h5><a href="<?php echo $item->get_permalink(); ?>"><?php echo $item->get_title(); ?></a></h5>
     <p><?php echo $item->get_description(); ?></p>
     <p><small>Posted on <?php echo $item->get_date('j F Y | g:i a'); ?></small></p>
   </div>

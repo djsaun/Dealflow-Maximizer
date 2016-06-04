@@ -18,7 +18,7 @@ require_once('php/autoloader.php');
           <?php
           $categoriesQuery = new WP_Query(
              array(
-               'post_type' => 'x-portfolio',
+               'post_type' => 'category',
                'order_by' => 'menu-order',
                'order' => 'ASC'
              )
@@ -56,7 +56,7 @@ require_once('php/autoloader.php');
 
         $featuredCategoryQuery = new WP_Query(
            array(
-             'post_type' => 'x-portfolio',
+             'post_type' => 'category',
              'order_by' => 'menu-order',
              'order' => 'ASC',
              'posts_per_page' => 1
@@ -72,7 +72,7 @@ require_once('php/autoloader.php');
 
           $dateQuery = new WP_Query(
              array(
-               'post_type' => 'x-portfolio',
+               'post_type' => 'category',
                'posts_per_page' => 1,
                'meta_query' => array(
                  'relation' => 'AND',
@@ -91,7 +91,7 @@ require_once('php/autoloader.php');
 
            $dayQuery = new WP_Query(
               array(
-                'post_type' => 'x-portfolio',
+                'post_type' => 'category',
                 'posts_per_page' => 1,
                 'meta_query' => array(
                    array(
@@ -113,8 +113,7 @@ require_once('php/autoloader.php');
             <h3 class="featured-category-title"><?php echo the_title(); ?> News</h3>
 
               <div class="x-column x-sm x-1-3 categories">
-                <!-- <iframe style=”border: 1px solid #333333; overflow: hidden; width: 190px; height: 490px;” src=”https://research.stlouisfed.org/fred-glance-widget.php” height=”240″ width=”320″ frameborder”0″ scrolling=”no”></iframe> -->
-                <iframe src="<?php echo get_post_meta( $post->ID, 'portfolio_widget', true ); ?>"></iframe>
+                <iframe src="<?php echo get_post_meta( $post->ID, 'category_widget', true ); ?>"></iframe>
               </div>
 
               <div class="x-column x-sm x-1-3 categories">
@@ -139,8 +138,14 @@ require_once('php/autoloader.php');
          <h3 class="featured-category-title"><?php echo the_title(); ?> News</h3>
 
            <div class="x-column x-sm x-1-3 categories">
-             <!-- <iframe style=”border: 1px solid #333333; overflow: hidden; width: 190px; height: 490px;” src=”https://research.stlouisfed.org/fred-glance-widget.php” height=”240″ width=”320″ frameborder”0″ scrolling=”no”></iframe> -->
-             <iframe src="<?php echo get_post_meta( $post->ID, 'portfolio_widget', true ); ?>"></iframe>
+             <?php if (get_post_meta( $post->ID, 'category_widget', true )) { ?>
+             <iframe src="<?php echo get_post_meta( $post->ID, 'category_widget', true ); ?>"></iframe>
+             <?php } else { ?>
+
+               <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/sample-list" data-widget-id="739237287125344256">Tweets from https://twitter.com/djsaun/lists/sample-list</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+             <?php   } ?>
            </div>
 
            <div class="x-column x-sm x-1-3 categories">

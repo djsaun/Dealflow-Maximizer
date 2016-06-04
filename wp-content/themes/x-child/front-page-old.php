@@ -53,7 +53,7 @@ $feed->handle_content_type();
     $feed->set_stupidly_fast(true);
     $feed->enable_order_by_date(true);
     // Run SimplePie.
-    // $feed->init();
+    $feed->init();
 
     // This makes sure that the content is sent to the browser as text/html and the UTF-8 character set (since we didn't change it).
     $feed->handle_content_type();
