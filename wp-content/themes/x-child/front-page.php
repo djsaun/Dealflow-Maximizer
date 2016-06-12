@@ -13,14 +13,20 @@ require_once('php/autoloader.php');
 <?php get_header(); ?>
 
   <div class="x-main full" role="main">
+    <div class="hero" style="background-color: red;">
+      <div class="x-container max width">
+        <h1>Dealflow Maximizer</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur id rem nihil, blanditiis repellat atque ducimus rerum amet dolorum sunt.</p>
+      </div>
+    </div>
     <div class="x-container max width">
         <section class="category-list">
           <?php
           $categoriesQuery = new WP_Query(
              array(
                'post_type' => 'category',
-               'order_by' => 'menu-order',
-               'order' => 'ASC'
+               'order_by' => 'title',
+               'order' => 'DESC'
              )
            );
 
@@ -35,6 +41,9 @@ require_once('php/autoloader.php');
                   <div class="x-promo man">
                     <div class="x-promo-content">
                       <h4><?php echo the_title(); ?></h4>
+                      <div class="category-links">
+
+                      </div>
                       <a href="<?php echo the_permalink(); ?>">Read More</a>
                     </div>
                   </div>
@@ -158,19 +167,30 @@ require_once('php/autoloader.php');
         <?php  }
        }
       }
+      wp_reset_postdata();
     }
   }?>
       </section>
+      <div class="dealflow-blog">
+        <h3>Recent Posts</h3>
+        <?php $postQuery = new WP_Query(
+           array(
+             'post_type' => 'post',
+             'posts_per_page' => 2,
+           )
+         );
+
+        if ( $postQuery->have_posts() ) {
+         while ( have_posts() ) : the_post(); ?>
+
+          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+            <?php echo the_content(); ?>
+          </article>
+
+        <?php endwhile;
+      } ?>
+      </div>
     </div>
-
-    <?php while ( have_posts() ) : the_post(); ?>
-
-      <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-        <?php x_get_view( 'global', '_content', 'the-content' ); ?>
-      </article>
-
-    <?php endwhile; ?>
-
   </div>
 
 <?php get_footer(); ?>

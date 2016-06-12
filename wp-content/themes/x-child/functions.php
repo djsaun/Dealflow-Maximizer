@@ -27,7 +27,7 @@ function theme_enqueue_styles() {
 }
 include 'inc/categories.php';
 include 'inc/events.php';
-// include 'inc/portfolio.php';
+include 'inc/portfolio.php';
 include 'inc/rss_feeds.php';
 
 function add_menu_order_support_for_portfolios() {

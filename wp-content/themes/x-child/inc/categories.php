@@ -12,6 +12,7 @@ function create_category() {
       ),
       'public' => true,
       'has_archive' => true,
+      'rewrite' => array('slug' => 'industries'),
       'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' )
     )
   );
