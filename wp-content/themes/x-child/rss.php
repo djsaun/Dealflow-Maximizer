@@ -6,7 +6,7 @@ while ( $loop->have_posts() ) : $loop->the_post();
   $rss = get_post_meta( get_the_ID(), 'rss_feed_input', true );
 
   $max_items_per_feed = 5;  // this pulls the top 5 articles from each feed
-$max_items_total = 15;  // this caps the total articles
+$max_items_total = 5;  // this caps the total articles
 $feed = new SimplePie();
 $feed->set_feed_url(explode(',',$rss));
 
@@ -28,7 +28,7 @@ $success = $feed->init();
   ?>
 
     <div class="item">
-      <h2><a href="<?php echo $item->get_permalink(); ?>"><?php echo $item->get_title(); ?></a></h2>
+      <h5><a href="<?php echo $item->get_permalink(); ?>"><?php echo $item->get_title(); ?></a></h5>
       <p><?php echo $item->get_description(); ?></p>
       <p><small>Posted on <?php echo $item->get_date('j F Y | g:i a'); ?></small></p>
     </div>
@@ -37,18 +37,3 @@ $success = $feed->init();
 
 endwhile;
  ?>
-
-<?php
-/*
-Here, we'll loop through all of the items in the feed, and $item represents the current item in the loop.
-*/
-foreach ($feed->get_items() as $item):
-?>
-
-  <div class="item">
-    <h5><a href="<?php echo $item->get_permalink(); ?>"><?php echo $item->get_title(); ?></a></h5>
-    <p><?php echo $item->get_description(); ?></p>
-    <p><small>Posted on <?php echo $item->get_date('j F Y | g:i a'); ?></small></p>
-  </div>
-
-<?php endforeach; ?>
