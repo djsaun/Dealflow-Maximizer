@@ -142,7 +142,7 @@ require_once('php/autoloader.php');
              <iframe src="<?php echo get_post_meta( $post->ID, 'category_widget', true ); ?>"></iframe>
              <?php } else { ?>
 
-               <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/sample-list" data-widget-id="739237287125344256">Tweets from https://twitter.com/djsaun/lists/sample-list</a>
+               <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/<?php echo get_post_meta( $post->ID, 'category_twitter', true ); ?>" data-widget-id="739237287125344256">Tweets from https://twitter.com/djsaun/lists/sample-list</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
              <?php   } ?>
