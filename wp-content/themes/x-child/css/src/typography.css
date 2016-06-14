@@ -7,18 +7,18 @@ p {
     color: var(--color-orange) !important;
 
     &:hover, &:active, &:focus {
-      color: color(#FF7600 a(80%)) !important;
+      color: var(--color-orange-hover) !important;
     }
 
     &.btn {
       padding: 0.563em 1.125em 0.563em !important;
       background-color: var(--color-orange);
       color: var(--color-white) !important;
-      border: 1px solid color(#FF7600 tint(50%));
+      border: 1px solid #ff9f4c;
 
       &:hover, &:active, &:focus {
-        background-color: color(#FF7600 a(80%)) !important;
-        border: 1px solid color(#FF7600 tint(50%));
+        background-color: var(--color-orange-hover) !important;
+        border: 1px solid #ff9f4c;
       }
     }
   }

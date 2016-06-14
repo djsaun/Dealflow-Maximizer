@@ -11,4 +11,9 @@
       margin-top: 0;
     }
   }
+
+  .category-list {
+    display: inline-block;
+    width: 100%;
+  }
 }
