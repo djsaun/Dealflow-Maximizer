@@ -52,36 +52,35 @@ require_once('php/autoloader.php');
                       <div class="category-links">
                         <ul>
 
-<?php
-  $category = get_the_title(get_the_ID());
+                        <?php
+                          $category = get_the_title(get_the_ID());
 
-  $linksArgs = array(
-    'post_type' => 'x-portfolio',
-    'posts_per_page' => 3,
-    'tax_query'      => array(
-      array(
-        'taxonomy' => 'portfolio-category',
-        'field'    => 'slug',
-        'terms'    => $category
-      )
-    )
-  );
+                          $linksArgs = array(
+                            'post_type' => 'x-portfolio',
+                            'posts_per_page' => 3,
+                            'tax_query'      => array(
+                              array(
+                                'taxonomy' => 'portfolio-category',
+                                'field'    => 'slug',
+                                'terms'    => $category
+                              )
+                            )
+                          );
 
-  $linkQuery = new WP_Query($linksArgs);
+                          $linkQuery = new WP_Query($linksArgs);
 
-  if ($linkQuery->have_posts()) {
-    while ($linkQuery->have_posts()) {
-      $linkQuery->the_post();?>
-        <li>
-          <a href="<?php echo get_post_meta( $post->ID, 'portfolio_link', true ); ?>" target="_blank"><?php echo get_the_title(); ?></a>
-        </li>
-
-    <?php }
-  }
- ?>
+                          if ($linkQuery->have_posts()) {
+                            while ($linkQuery->have_posts()) {
+                              $linkQuery->the_post();?>
+                                <li>
+                                  <a href="<?php echo get_post_meta( $post->ID, 'portfolio_link', true ); ?>" target="_blank"><?php echo get_the_title(); ?></a>
+                                </li>
+                      <?php }
+                          }
+                         ?>
                        </ul>
                       </div>
-                      <a href="<?php echo the_permalink(); ?>">Read More</a>
+                      <a href="<?php echo the_permalink(); ?>" class="btn x-btn x-btn-flat x-btn-rounded x-btn-regular">Read More</a>
                     </div>
                   </div>
                 </div>
