@@ -24,9 +24,17 @@ require_once('php/autoloader.php');
           <?php
           $categoriesQuery = new WP_Query(
              array(
-               'post_type' => 'category',
+               'post_type' => 'x-portfolio',
                'order_by' => 'title',
-               'order' => 'DESC'
+               'order' => 'DESC',
+               'tax_query' => array(
+                 array(
+                   'taxonomy' => 'portfolio-category',
+                   'field'    => 'slug',
+                   'terms'    => 'industries',
+                   'include_children' => false
+                 )
+               )
              )
            );
 
@@ -42,7 +50,36 @@ require_once('php/autoloader.php');
                     <div class="x-promo-content">
                       <h4><?php echo the_title(); ?></h4>
                       <div class="category-links">
+                        <ul>
 
+<?php
+  $category = get_the_title(get_the_ID());
+
+  $linksArgs = array(
+    'post_type' => 'x-portfolio',
+    'posts_per_page' => 3,
+    'tax_query'      => array(
+      array(
+        'taxonomy' => 'portfolio-category',
+        'field'    => 'slug',
+        'terms'    => $category
+      )
+    )
+  );
+
+  $linkQuery = new WP_Query($linksArgs);
+
+  if ($linkQuery->have_posts()) {
+    while ($linkQuery->have_posts()) {
+      $linkQuery->the_post();?>
+        <li>
+          <a href="<?php echo get_post_meta( $post->ID, 'portfolio_link', true ); ?>" target="_blank"><?php echo get_the_title(); ?></a>
+        </li>
+
+    <?php }
+  }
+ ?>
+                       </ul>
                       </div>
                       <a href="<?php echo the_permalink(); ?>">Read More</a>
                     </div>
