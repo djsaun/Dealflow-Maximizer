@@ -24,17 +24,9 @@ require_once('php/autoloader.php');
           <?php
           $categoriesQuery = new WP_Query(
              array(
-               'post_type' => 'x-portfolio',
+               'post_type' => 'category',
                'order_by' => 'title',
-               'order' => 'DESC',
-               'tax_query' => array(
-                 array(
-                   'taxonomy' => 'portfolio-category',
-                   'field'    => 'slug',
-                   'terms'    => 'industries',
-                   'include_children' => false
-                 )
-               )
+               'order' => 'DESC'
              )
            );
 
@@ -53,6 +45,7 @@ require_once('php/autoloader.php');
                         <ul>
 
                         <?php
+                          $categoryId = get_the_ID();
                           $category = get_the_title(get_the_ID());
 
                           $linksArgs = array(
@@ -80,7 +73,7 @@ require_once('php/autoloader.php');
                          ?>
                        </ul>
                       </div>
-                      <a href="<?php echo the_permalink(); ?>" class="btn x-btn x-btn-flat x-btn-rounded x-btn-regular">Read More</a>
+                      <a href="<?php echo the_permalink($categoryId); ?>" class="btn x-btn x-btn-flat x-btn-rounded x-btn-regular">Read More</a>
                     </div>
                   </div>
                 </div>

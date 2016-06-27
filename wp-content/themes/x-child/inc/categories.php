@@ -27,7 +27,7 @@ function add_category_date_checkbox_box() {
         'category_date_checkbox', // ID, should be a string.
         'Date To Display', // Meta Box Title.
         'category_date_checkbox_meta_box', // Your call back function, this is where your form field will go.
-        'category', // The post type you want this to show up on, can be post, page, or custom post type.
+        'x-portfolio', // The post type you want this to show up on, can be post, page, or custom post type.
         'side', // The placement of your meta box, can be normal or side.
         'core' // The priority in which this will be displayed.
     );
@@ -138,7 +138,7 @@ function add_featured_widget_box() {
         'category_widget', // ID, should be a string.
         'Featured Widget', // Meta Box Title.
         'category_widget_meta_box', // Your call back function, this is where your form field will go.
-        'category', // The post type you want this to show up on, can be post, page, or custom post type.
+        'x-portfolio', // The post type you want this to show up on, can be post, page, or custom post type.
         'normal', // The placement of your meta box, can be normal or side.
         'low' // The priority in which this will be displayed.
     );
@@ -208,7 +208,7 @@ function add_featured_twitter_box() {
         'category_twitter', // ID, should be a string.
         'Featured Twitter Feed', // Meta Box Title.
         'category_twitter_meta_box', // Your call back function, this is where your form field will go.
-        'category', // The post type you want this to show up on, can be post, page, or custom post type.
+        'x-portfolio', // The post type you want this to show up on, can be post, page, or custom post type.
         'normal', // The placement of your meta box, can be normal or side.
         'low' // The priority in which this will be displayed.
     );
@@ -278,7 +278,7 @@ function add_rss_select_box() {
         'category_rss', // ID, should be a string.
         'RSS Feed', // Meta Box Title.
         'category_rss_meta_box', // Your call back function, this is where your form field will go.
-        'category', // The post type you want this to show up on, can be post, page, or custom post type.
+        'x-portfolio', // The post type you want this to show up on, can be post, page, or custom post type.
         'normal', // The placement of your meta box, can be normal or side.
         'low' // The priority in which this will be displayed.
     );
