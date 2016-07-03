@@ -13,14 +13,14 @@ require_once('php/autoloader.php');
 <?php get_header(); ?>
 
   <div class="x-main full" role="main">
-    <div class="hero" style="background-color: red;">
+    <div class="hero">
       <div class="x-container max width">
         <h1>Dealflow Maximizer</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur id rem nihil, blanditiis repellat atque ducimus rerum amet dolorum sunt.</p>
       </div>
     </div>
-    <div class="x-container max width">
-        <section class="category-list">
+      <section class="category-list">
+        <div class="x-container max width">
           <?php
           $categoriesQuery = new WP_Query(
              array(
@@ -81,9 +81,11 @@ require_once('php/autoloader.php');
           <?php  }
 
           } ?>
-      </section>
+        </div> <!-- .x-container -->
+    </section> <!-- .category-list -->
 
       <section class="featured-category">
+        <div class="x-container max width">
         <?php
         date_default_timezone_set('America/Los_Angeles');
 
@@ -163,63 +165,66 @@ require_once('php/autoloader.php');
               </div>
 
         <?php  }
+              }
+              else {
+                if ( $dayQuery->have_posts() ) {
 
-      }
-      else {
-        if ( $dayQuery->have_posts() ) {
+                 // Start looping over the query results.
+                 while ( $dayQuery->have_posts() ) {
 
-         // Start looping over the query results.
-         while ( $dayQuery->have_posts() ) {
+                 $dayQuery->the_post(); ?>
 
-         $dayQuery->the_post(); ?>
+                 <h3 class="featured-category-title"><?php echo the_title(); ?> News</h3>
 
-         <h3 class="featured-category-title"><?php echo the_title(); ?> News</h3>
+                   <div class="x-column x-sm x-1-3 categories">
+                     <?php if (get_post_meta( $post->ID, 'category_widget', true )) { ?>
+                     <iframe src="<?php echo get_post_meta( $post->ID, 'category_widget', true ); ?>"></iframe>
+                     <?php } else { ?>
 
-           <div class="x-column x-sm x-1-3 categories">
-             <?php if (get_post_meta( $post->ID, 'category_widget', true )) { ?>
-             <iframe src="<?php echo get_post_meta( $post->ID, 'category_widget', true ); ?>"></iframe>
-             <?php } else { ?>
+                       <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/<?php echo get_post_meta( $post->ID, 'category_twitter', true ); ?>" data-widget-id="739237287125344256">Tweets from https://twitter.com/djsaun/lists/sample-list</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-               <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/<?php echo get_post_meta( $post->ID, 'category_twitter', true ); ?>" data-widget-id="739237287125344256">Tweets from https://twitter.com/djsaun/lists/sample-list</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                     <?php   } ?>
+                   </div>
 
-             <?php   } ?>
-           </div>
+                   <div class="x-column x-sm x-1-3 categories">
+                       test
+                   </div>
 
-           <div class="x-column x-sm x-1-3 categories">
-               test
-           </div>
+                   <div class="x-column x-sm x-1-3 categories">
+                     <?php include("rss.php"); ?>
+                   </div>
+                <?php  }
+               }
+              }
+              wp_reset_postdata();
+            }
+          }?>
+        </div> <!-- .x-container -->
+      </section> <!-- .featured-category -->
 
-           <div class="x-column x-sm x-1-3 categories">
-             <?php include("rss.php"); ?>
-           </div>
-        <?php  }
-       }
-      }
-      wp_reset_postdata();
-    }
-  }?>
-      </section>
       <div class="dealflow-blog">
-        <h3>Recent Posts</h3>
-        <?php $postQuery = new WP_Query(
-           array(
-             'post_type' => 'post',
-             'posts_per_page' => 2,
-           )
-         );
+        <div class="x-container max width">
+          <h3>Recent Posts</h3>
+          <?php $postQuery = new WP_Query(
+             array(
+               'post_type' => 'post',
+               'posts_per_page' => 2,
+             )
+           );
 
-        if ( $postQuery->have_posts() ) {
-         while ( have_posts() ) : the_post(); ?>
+          if ( $postQuery->have_posts() ) {
+           while ( have_posts() ) : the_post(); ?>
 
-          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            <?php echo the_content(); ?>
-          </article>
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+              <?php echo the_content(); ?>
+            </article>
 
-        <?php endwhile;
-      } ?>
-      </div>
+          <?php endwhile;
+        } ?>
+        </div> <!-- .x-container -->
+      </div> <!-- .dealflow-blog -->
     </div>
-  </div>
+
 
 <?php get_footer(); ?>

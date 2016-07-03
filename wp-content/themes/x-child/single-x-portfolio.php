@@ -4,7 +4,6 @@
 
 <div class="x-main full" role="main">
   <div class="x-container max width">
-    
 
     <section class="featured-category">
       <?php

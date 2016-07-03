@@ -1,12 +1,9 @@
 <?php get_header(); ?>
 
   <div class="x-container max width offset">
-    <div class="<?php x_main_content_class(); ?>" role="main">
+    <div role="main">
 
       <?php while ( have_posts() ) : the_post(); ?>
-        $disable_page_title = get_post_meta( get_the_ID(), '_x_entry_disable_page_title', true );
-
-        ?>
 
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
           <div class="entry-featured">

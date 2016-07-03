@@ -1,5 +1,11 @@
 .hero {
+  background-color: var(--color-blue);
   h1 {
     text-align: center;
+    color: var(--color-white);
+  }
+
+  p {
+    color: var(--color-white);
   }
 }
