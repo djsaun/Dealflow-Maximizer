@@ -84,8 +84,6 @@ require_once('php/autoloader.php');
         </div> <!-- .x-container -->
     </section> <!-- .category-list -->
 
-      <section class="featured-category">
-        <div class="x-container max width">
         <?php
         date_default_timezone_set('America/Los_Angeles');
 
@@ -96,7 +94,7 @@ require_once('php/autoloader.php');
 
         $featuredCategoryQuery = new WP_Query(
            array(
-             'post_type' => 'category',
+             'post_type' => 'x-portfolio',
              'order_by' => 'menu-order',
              'order' => 'ASC',
              'posts_per_page' => 1
@@ -112,7 +110,7 @@ require_once('php/autoloader.php');
 
           $dateQuery = new WP_Query(
              array(
-               'post_type' => 'category',
+               'post_type' => 'x-portfolio',
                'posts_per_page' => 1,
                'meta_query' => array(
                  'relation' => 'AND',
@@ -131,7 +129,7 @@ require_once('php/autoloader.php');
 
            $dayQuery = new WP_Query(
               array(
-                'post_type' => 'category',
+                'post_type' => 'x-portfolio',
                 'posts_per_page' => 1,
                 'meta_query' => array(
                    array(
@@ -149,6 +147,11 @@ require_once('php/autoloader.php');
             while ( $dateQuery->have_posts() ) {
 
             $dateQuery->the_post(); ?>
+            <?php if (has_post_thumbnail( $post->ID ) ): ?>
+             <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+           <?php endif; ?>
+           <section class="featured-category" style="background-image: url('<?php echo $image[0]; ?>')">
+            <div class="x-container max width">
 
             <h3 class="featured-category-title"><?php echo the_title(); ?> News</h3>
 
@@ -163,6 +166,8 @@ require_once('php/autoloader.php');
               <div class="x-column x-sm x-1-3 categories">
                 <?php include("rss.php"); ?>
               </div>
+            </div> <!-- .x-container -->
+          </section> <!-- .featured-category -->
 
         <?php  }
               }
@@ -173,6 +178,12 @@ require_once('php/autoloader.php');
                  while ( $dayQuery->have_posts() ) {
 
                  $dayQuery->the_post(); ?>
+                 <?php if (has_post_thumbnail( $post->ID ) ): ?>
+                  <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+                <?php endif; ?>
+             <section class="featured-category" style="background-image: url('<?php echo $image[0]; ?>')">
+
+               <div class="x-container max width">
 
                  <h3 class="featured-category-title"><?php echo the_title(); ?> News</h3>
 
@@ -194,14 +205,14 @@ require_once('php/autoloader.php');
                    <div class="x-column x-sm x-1-3 categories">
                      <?php include("rss.php"); ?>
                    </div>
+                 </div> <!-- .x-container -->
+               </section> <!-- .featured-category -->
                 <?php  }
                }
               }
               wp_reset_postdata();
             }
           }?>
-        </div> <!-- .x-container -->
-      </section> <!-- .featured-category -->
 
       <div class="dealflow-blog">
         <div class="x-container max width">

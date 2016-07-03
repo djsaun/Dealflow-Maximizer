@@ -1,19 +1,1 @@
-.home {
-  .categories {
-    margin-top: 4%;
-    padding: 0;
 
-    &:nth-of-type(3n+3) {
-      margin-right: 0;
-    }
-
-    h4 {
-      margin-top: 0;
-    }
-  }
-
-  .category-list {
-    display: inline-block;
-    width: 100%;
-  }
-}
