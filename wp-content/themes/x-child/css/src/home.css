@@ -47,12 +47,17 @@
       position: relative;
       z-index: 9;
 
+      iframe {
+        min-height: 500px;
+        width: 100%;
+      }
+
       .item {
 
         h5:first-of-type {
           margin-top: 0;
         }
-        
+
         p {
           color: var(--color-white);
         }

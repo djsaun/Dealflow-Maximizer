@@ -2,11 +2,15 @@
 
 <?php get_header(); ?>
 
-<div class="hero" style="background-image: url('<?php echo the_post_thumbnail_url('full'); ?>')">
- <div class="x-container max width">
-   <h1><?php echo the_title(); ?></h1>
-   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur id rem nihil, blanditiis repellat atque ducimus rerum amet dolorum sunt.</p>
- </div>
+
+ <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+<?php var_dump(the_post_thumbnail()); ?>
+
+<div class="hero" style="background-image: url('<?php echo the_post_thumbnail_url(); ?>')">
+  <div class="x-container max width">
+    <h1><?php echo the_title(); ?></h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur id rem nihil, blanditiis repellat atque ducimus rerum amet dolorum sunt.</p>
+  </div>
 </div>
 
 <div class="x-main full" role="main">
