@@ -48,9 +48,35 @@
       z-index: 9;
 
       .item {
+
+        h5:first-of-type {
+          margin-top: 0;
+        }
+        
         p {
           color: var(--color-white);
         }
+      }
+    }
+  }
+
+  .dealflow-blog {
+    margin-bottom: 40px;
+
+    article.type-page {
+      margin-top: 2em;
+
+      h3 {
+        font-size: 20px;
+      }
+
+      .x-recent-posts-excerpt {
+        margin-top: 10px;
+        display: inline-block;
+        color: var(--color-gray);
+        font-size: 14px;
+        line-height: 1.25;
+        pointer-events: none;
       }
     }
   }
