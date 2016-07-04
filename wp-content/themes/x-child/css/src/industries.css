@@ -22,4 +22,32 @@
       position: relative;
     }
   }
+
+  .featured-links {
+    ul {
+      margin-left: 0;
+      list-style-type: none;
+      column-count: 4;
+    }
+  }
+
+  .item:first-of-type {
+    h5 {
+      margin-top: 0;
+    }
+  }
+
+  .fred-widget {
+    width: 100%;
+    min-height: 500px;
+  }
+
+  .graph {
+    padding-bottom: 40px;
+
+    iframe {
+      min-height: 500px;
+      width: 100%;
+    }
+  }
 }

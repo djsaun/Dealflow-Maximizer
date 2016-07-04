@@ -5,8 +5,8 @@ $loop = new WP_Query( $args );
 while ( $loop->have_posts() ) : $loop->the_post();
   $rss = get_post_meta( get_the_ID(), 'rss_feed_input', true );
 
-  $max_items_per_feed = 4;  // this pulls the top 4 articles from each feed
-$max_items_total = 4;  // this caps the total articles
+  $max_items_per_feed = 3;  // this pulls the top 3 articles from each feed
+$max_items_total = 3;  // this caps the total articles
 $feed = new SimplePie();
 $feed->set_feed_url(explode(',',$rss));
 
@@ -24,7 +24,7 @@ $success = $feed->init();
   // This makes sure that the content is sent to the browser as text/html and the UTF-8 character set (since we didn't change it).
   $feed->handle_content_type();
 
-  foreach ($feed->get_items(0, 4) as $item):
+  foreach ($feed->get_items(0, 3) as $item):
   ?>
 
     <div class="item">
