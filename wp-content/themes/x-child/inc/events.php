@@ -12,7 +12,7 @@ function create_event() {
       ),
       'public' => true,
       'has_archive' => true,
-      'supports' => array( 'title' )
+      'supports' => array( 'title', 'author' )
     )
   );
 }

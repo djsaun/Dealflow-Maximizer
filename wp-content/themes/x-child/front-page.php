@@ -19,6 +19,39 @@ require_once('php/autoloader.php');
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur id rem nihil, blanditiis repellat atque ducimus rerum amet dolorum sunt.</p>
       </div>
     </div>
+
+    <?php $args = array(
+          "post_type" => 'event_alert',
+          "posts_per_page" => -1,
+          "orderby" => "menu_order",
+          "order" => "ASC",
+          'meta_query' => array(
+           array(
+             'key' => 'active',
+             'value' => 'true',
+             'compare' => '='
+           )
+         )
+      );
+      $loop = new WP_Query( $args );
+      while ( $loop->have_posts() ) : $loop->the_post(); ?>
+
+      <div class="active-event">
+        <div class="x-container max width">
+        <p><?php echo the_author_meta('first_name'); ?> will be at <?php echo the_title(); ?> in <?php echo get_post_meta($post->ID, $key="event_location", true);
+            if((get_post_meta($post->ID, $key="event_end", true) != NULL)) { ?>
+            from <?php echo date('F d, Y', strtotime(get_post_meta($post->ID, $key="event_start", true))); ?> to <?php echo date('F d, Y', strtotime(get_post_meta($post->ID, $key="event_end", true))); ?>.
+          <?php  } else { ?>
+            on <?php echo date('F d, Y', strtotime(get_post_meta($post->ID, $key="event_start", true))); ?>.
+        <?php  }
+           ?>
+           Hope to see you there!
+        </p>
+        </div>
+      </div>
+
+      <?php endwhile; ?>
+
       <section class="category-list">
         <div class="x-container max width">
           <?php
@@ -175,7 +208,6 @@ require_once('php/autoloader.php');
                 <?php   } ?>              </div>
 
               <div class="x-column x-sm x-1-3 categories">
-                <iframe src="<?php echo get_post_meta( $post->ID, 'category_widget', true ); ?>"></iframe>
               </div>
 
               <div class="x-column x-sm x-1-3 categories">
@@ -183,7 +215,7 @@ require_once('php/autoloader.php');
               </div>
 
               <?php if (get_post_meta( $catId, 'category_widget', true )) { ?>
-                <div class="x-column x-sm x-1-1 categories">
+                <div class="x-column x-sm x-1-1 categories graph">
                   <iframe src="<?php echo get_post_meta( $catId, 'category_widget', true ); ?>"></iframe>
                 </div>
               <?php } ?>
@@ -212,11 +244,8 @@ require_once('php/autoloader.php');
                  <h3 class="featured-category-title"><?php echo the_title(); ?> News</h3>
 
                    <div class="x-column x-sm x-1-3 categories">
-
-
                        <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/<?php echo get_post_meta( $post->ID, 'category_twitter', true ); ?>" data-widget-id="739237287125344256">Tweets from https://twitter.com/djsaun/lists/sample-list</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
                    </div>
 
                    <div class="x-column x-sm x-1-3 categories">
@@ -228,7 +257,7 @@ require_once('php/autoloader.php');
                    </div>
 
                    <?php if (get_post_meta( $catId, 'category_widget', true )) { ?>
-                     <div class="x-column x-sm x-1-1 categories">
+                     <div class="x-column x-sm x-1-1 categories graph">
                        <iframe src="<?php echo get_post_meta( $catId, 'category_widget', true ); ?>"></iframe>
                      </div>
                    <?php } ?>
