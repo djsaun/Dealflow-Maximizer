@@ -208,15 +208,16 @@ require_once('php/autoloader.php');
                 <?php   } ?>              </div>
 
               <div class="x-column x-sm x-1-3 categories">
+                <iframe src="<?php echo get_post_meta( $catId, 'category_widget', true ); ?>"></iframe>
               </div>
 
               <div class="x-column x-sm x-1-3 categories">
                 <?php include("rss.php"); ?>
               </div>
 
-              <?php if (get_post_meta( $catId, 'category_widget', true )) { ?>
+              <?php if (get_post_meta( $catId, 'category_graph', true )) { ?>
                 <div class="x-column x-sm x-1-1 categories graph">
-                  <iframe src="<?php echo get_post_meta( $catId, 'category_widget', true ); ?>"></iframe>
+                  <iframe src="<?php echo get_post_meta( $catId, 'category_graph', true ); ?>"></iframe>
                 </div>
               <?php } ?>
 
@@ -249,16 +250,16 @@ require_once('php/autoloader.php');
                    </div>
 
                    <div class="x-column x-sm x-1-3 categories">
-                       test
+                     <iframe src="<?php echo get_post_meta( $catId, 'category_widget', true ); ?>"></iframe>
                    </div>
 
                    <div class="x-column x-sm x-1-3 categories">
                      <?php include("rss.php"); ?>
                    </div>
 
-                   <?php if (get_post_meta( $catId, 'category_widget', true )) { ?>
+                   <?php if (get_post_meta( $catId, 'category_graph', true )) { ?>
                      <div class="x-column x-sm x-1-1 categories graph">
-                       <iframe src="<?php echo get_post_meta( $catId, 'category_widget', true ); ?>"></iframe>
+                       <iframe src="<?php echo get_post_meta( $catId, 'category_graph', true ); ?>"></iframe>
                      </div>
                    <?php } ?>
                  </div> <!-- .x-container -->

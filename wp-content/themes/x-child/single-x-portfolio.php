@@ -46,7 +46,7 @@
                 <a href="<?php echo get_post_meta( $post->ID, 'portfolio_link', true ); ?>" target="_blank"><?php echo get_the_title(); ?></a>
               </li>
     <?php }
-        }
+  }; wp_reset_postdata();
        ?>
      </ul>
     </section>
@@ -60,7 +60,8 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>        </div>
 
         <div class="x-column x-sm x-1-3 categories">
-            test
+          <?php $catId = get_the_ID();?>
+          <iframe src="<?php echo get_post_meta( $catId, 'category_widget', true ); ?>"></iframe>
         </div>
 
         <div class="x-column x-sm x-1-3 categories">
