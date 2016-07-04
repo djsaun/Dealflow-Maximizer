@@ -14,6 +14,43 @@
 <div class="x-main full" role="main">
   <div class="x-container max width">
 
+    <section class="featured-links">
+
+      <?php
+        $categoryId = get_the_ID();
+        $category = get_the_title(get_the_ID());
+
+        $linksArgs = array(
+          'post_type' => 'x-portfolio',
+          'posts_per_page' => 3,
+          'tax_query'      => array(
+            array(
+              'taxonomy' => 'portfolio-category',
+              'field'    => 'slug',
+              'terms'    => $category
+            )
+          )
+        );
+
+        if ($linksArgs) { ?>
+          <h3>Featured Links</h3>
+          <ul>
+      <?php  }
+
+        $linkQuery = new WP_Query($linksArgs);
+
+        if ($linkQuery->have_posts()) {
+          while ($linkQuery->have_posts()) {
+            $linkQuery->the_post();?>
+              <li>
+                <a href="<?php echo get_post_meta( $post->ID, 'portfolio_link', true ); ?>" target="_blank"><?php echo get_the_title(); ?></a>
+              </li>
+    <?php }
+        }
+       ?>
+     </ul>
+    </section>
+
     <section class="featured-category">
 
       <h3 class="featured-category-title"><?php echo $pageTitle; ?> News</h3>
