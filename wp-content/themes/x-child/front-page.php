@@ -50,7 +50,7 @@ require_once('php/autoloader.php');
         </div>
       </div>
 
-      <?php endwhile; ?>
+    <?php endwhile; wp_reset_postdata(); ?>
 
       <section class="category-list">
         <div class="x-container max width">
@@ -59,7 +59,7 @@ require_once('php/autoloader.php');
              array(
                'post_type' => 'x-portfolio',
                'order_by' => 'title',
-               'order' => 'DESC',
+               'order' => 'ASC',
                'tax_query'      => array(
                  array(
                    'taxonomy' => 'portfolio-category',
@@ -121,7 +121,7 @@ require_once('php/autoloader.php');
 
           <?php  }
 
-          } ?>
+        }; wp_reset_postdata(); ?>
         </div> <!-- .x-container -->
     </section> <!-- .category-list -->
 
@@ -202,7 +202,7 @@ require_once('php/autoloader.php');
                 <iframe src="<?php echo get_post_meta( $post->ID, 'category_widget', true ); ?>"></iframe>
                 <?php } else { ?>
 
-                  <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/<?php echo get_post_meta( $post->ID, 'category_twitter', true ); ?>" data-widget-id="739237287125344256">Tweets from https://twitter.com/djsaun/lists/sample-list</a>
+                  <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/<?php echo get_post_meta( $post->ID, 'category_twitter', true ); ?>" data-widget-id="739237287125344256"></a>
    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
                 <?php   } ?>              </div>
@@ -244,7 +244,7 @@ require_once('php/autoloader.php');
                  <h3 class="featured-category-title"><?php echo the_title(); ?> News</h3>
 
                    <div class="x-column x-sm x-1-3 categories">
-                       <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/<?php echo get_post_meta( $post->ID, 'category_twitter', true ); ?>" data-widget-id="739237287125344256">Tweets from https://twitter.com/djsaun/lists/sample-list</a>
+                       <a class="twitter-timeline"  href="https://twitter.com/djsaun/lists/<?php echo get_post_meta( $post->ID, 'category_twitter', true ); ?>" data-widget-id="739237287125344256"></a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                    </div>
 
@@ -288,7 +288,7 @@ require_once('php/autoloader.php');
             </article>
 
           <?php endwhile;
-        } ?>
+        }; wp_reset_postdata(); ?>
         </div> <!-- .x-container -->
       </div> <!-- .dealflow-blog -->
     </div>
